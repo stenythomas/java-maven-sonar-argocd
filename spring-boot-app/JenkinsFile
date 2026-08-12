@@ -20,14 +20,18 @@ pipeline {
       }
     }
  stage('SonarQube Analysis') {
-      steps {
-        script {
-            def scannerHome = tool 'SonarScanner'
-            withSonarQubeEnv('sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my-ec2-project -Dsonar.sources=src/"
-            }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh '''
+                cd spring-boot-app
+                mvn sonar:sonar \
+                  -Dsonar.projectKey=my-ec2-project \
+                  -Dsonar.projectName="Spring Boot App" \
+                  -Dsonar.host.url=$SONAR_HOST_URL
+            '''
         }
-      }
+    }
+}
     }
 
     stage('Build and Push Docker Image') {
