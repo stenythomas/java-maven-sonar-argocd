@@ -24,7 +24,7 @@ pipeline {
         withSonarQubeEnv('sonarqube') {
             sh '''
                 cd spring-boot-app
-                mvn sonar:sonar \
+                mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.1.0.4751:sonar \
                   -Dsonar.projectKey=my-ec2-project \
                   -Dsonar.projectName="Spring Boot App" \
                   -Dsonar.host.url=$SONAR_HOST_URL
