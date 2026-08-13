@@ -72,10 +72,10 @@ stage('Update Deployment File') {
 
                         cd gitops-repo
 
-                        git config user.email "jemin@stthomascollege.ac.in"
+                        git config user.email "stenythomas163@gmail.com"
                         git config user.name "${GIT_USER_NAME}"
 
-                        sed -i "s|image: .*|image: jeminthomas/spring-boot-app:${BUILD_NUMBER}|g" spring-boot-app-manifests/deployment.yml
+                        sed -i "s|image: .*|image: stenythomas/spring-boot-app:${BUILD_NUMBER}|g" spring-boot-app-manifests/deployment.yml
 
                         git add spring-boot-app-manifests/deployment.yml
 
